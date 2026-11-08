@@ -1,0 +1,114 @@
+baseURL: https://dersavage.github.io/essays/
+languageCode: en
+defaultContentLanguage: en
+title: Essays
+theme: fluidity
+enableRobotsTXT: true
+summaryLength: 40
+hasCJKLanguage: false
+
+# required by the theme's highlight style
+pygmentsUseClasses: true
+pygmentsCodefences: true
+
+outputs:
+  home: [html, rss]
+  section: [html, rss]
+  taxonomy: [html]
+  term: [html]
+
+menus:
+  main:
+    - name: Essays
+      identifier: essays-home
+      url: /
+      weight: 10
+    - name: Archives
+      identifier: archives
+      pageRef: /archives
+      weight: 20
+    - name: Fiction
+      identifier: fiction-blog
+      url: https://dersavage.github.io/fiction/
+      weight: 30
+    - name: Non-fiction
+      identifier: non-fiction-blog
+      url: https://dersavage.github.io/non-fiction/
+      weight: 40
+    - name: Main site
+      identifier: main-site
+      url: https://dersavage.github.io/site/
+      weight: 50
+
+markup:
+  defaultMarkdownHandler: goldmark
+  goldmark:
+    renderer:
+      # the essay bodies are hand-written HTML, so let Hugo pass it through
+      unsafe: true
+
+security:
+  exec:
+    allow:
+      - '^(dart-)?sass(-embedded)?$'
+      - '^go$'
+      - '^git$'
+      - '^npx$'
+      - '^node$'
+      - '^postcss$'
+      - '^tailwindcss$'
+
+build:
+  buildStats:
+    enable: true
+  cachebusters:
+    - source: assets/notwatching/hugo_stats\.json
+      target: css
+    - source: (postcss|tailwind)\.config\.js
+      target: css
+
+module:
+  hugoVersion:
+    min: 0.128.0
+  mounts:
+    - source: assets
+      target: assets
+    - source: content
+      target: content
+    - source: static
+      target: static
+    - source: layouts
+      target: layouts
+    - source: hugo_stats.json
+      disableWatch: true
+      target: assets/notwatching/hugo_stats.json
+
+params:
+  description: Essays by Jan M. Savage
+  fullContentRSS: true
+
+  # the posts section is what the home page lists
+  mainSections: [posts]
+
+  # all ten essays appear on the home page at once
+  pageSize:
+    home: 100
+    list: 100
+    archives: 100
+
+  listPage:
+    numCategoriesToShow: 1
+    numTagsToShow: 3
+    showSummary: true
+
+  articleMetadata:
+    position: header
+  toc:
+    disabled: false
+  relatedPosts:
+    disabled: true
+  comment:
+    disabled: true
+  search:
+    disabled: true
+  math: false

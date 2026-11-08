@@ -21,9 +21,6 @@ jobs:
       HUGO_VERSION: 0.167.0
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
-        with:
-          go-version: stable
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -33,13 +30,10 @@ jobs:
           sudo tar -C /usr/local/bin -xzf hugo.tgz hugo
       - uses: actions/configure-pages@v5
         id: pages
-      - name: Fetch Hugolify modules and npm packages
-        run: |
-          hugo mod get
-          hugo mod npm pack
-          npm install --no-audit --no-fund
+      - name: Install Tailwind (used by the Fluidity theme)
+        run: npm install --no-audit --no-fund
       - name: Build
-        run: hugo --gc --minify --environment production --baseURL "${{ steps.pages.outputs.base_url }}/"
+        run: hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
       - uses: actions/upload-pages-artifact@v3
         with:
           path: public

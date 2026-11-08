@@ -1,5 +1,0 @@
-imports:
-  # Core theme
-  - path: github.com/hugolify/hugolify-theme/v2
-  - path: github.com/hugolify/hugolify-theme-icons # Lucide and Simple Icons
-  - path: github.com/hugolify/hugolify-theme-design-system # CSS and JS

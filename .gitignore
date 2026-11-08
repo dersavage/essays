@@ -1,9 +1,6 @@
-_vendor
-node_modules
-public
-resources
-.DS_store
-# Local Netlify folder
-.netlify
-jsconfig.json
-package.hugo.json
+node_modules/
+public/
+resources/
+.hugo_build.lock
+hugo_stats.json
+.DS_Store

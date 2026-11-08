@@ -1,5 +1,4 @@
 ---
-draft: false
-title: All essays
-description: Everything I have written, newest first.
+title: Essays
+description: Essays by Jan M. Savage
 ---
